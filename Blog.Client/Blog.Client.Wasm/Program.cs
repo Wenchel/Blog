@@ -1,13 +1,10 @@
+using AntDesign.Pro.Layout;
+using Blog.Client.Wasm.Services;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Blog.Client.Shared;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Blog.Client.Wasm
 {
@@ -20,6 +17,13 @@ namespace Blog.Client.Wasm
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddAntDesign();
+            builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
+            builder.Services.AddScoped<IChartService, ChartService>();
+            builder.Services.AddScoped<IProjectService, ProjectService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
+
             await builder.Build().RunAsync();
         }
     }

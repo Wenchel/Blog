@@ -1,0 +1,11 @@
+using System.Collections.Generic;
+using Blog.Client.Wasm.Models;
+using Microsoft.AspNetCore.Components;
+
+namespace Blog.Client.Wasm.Pages.Account.Center
+{
+    public partial class Articles
+    {
+        [Parameter] public IList<ListItemDataType> List { get; set; }
+    }
+}
