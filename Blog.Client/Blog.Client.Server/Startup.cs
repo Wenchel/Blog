@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AntDesign.Pro.Layout;
-using Blog.Client.Server.Services;
 
 namespace Blog.Client.Server
 {
@@ -33,14 +32,9 @@ namespace Blog.Client.Server
             services.AddAntDesign();
 			services.AddScoped(sp => new HttpClient
             {
-                BaseAddress = new Uri(sp.GetService<NavigationManager>().BaseUri)
+                BaseAddress = new Uri("https://127.0.0.1/qwerty/")
             });
             services.Configure<ProSettings>(Configuration.GetSection("ProSettings"));
-            services.AddScoped<IChartService, ChartService>();
-            services.AddScoped<IProjectService, ProjectService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IProfileService, ProfileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

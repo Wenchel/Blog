@@ -1,4 +1,35 @@
 ﻿@inherits LayoutComponentBase
-<h1>haha</h1>
-@Body
 
+<AntDesign.Pro.Layout.BasicLayout Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
+                                  MenuData="_menuData">
+    <RightContentRender>
+        <h3 style="float:left">我是头部</h3>
+    </RightContentRender>
+    <ChildContent>
+        @Body
+    </ChildContent>
+</AntDesign.Pro.Layout.BasicLayout>
+<SettingDrawer />
+
+@code
+{
+
+    @inject HttpClient HttpClient
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        HttpClient.GetFromJsonAsync<MenuDataItem[]>("data/menu.json");
+    }
+
+
+    private readonly MenuDataItem[] _menuData =
+        {
+        new MenuDataItem
+        {
+            Path = "/",
+            Name = "welcome",
+            Key = "welcome",
+            Icon = "smile",
+        }
+    };}
