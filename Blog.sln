@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Client.Wasm", "Blog.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Client.Server", "Blog.Client\Blog.Client.Server\Blog.Client.Server.csproj", "{DDBD5E18-9A0C-4021-A440-1617A48A1605}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Blog.Shared", "Blog.Shared\Blog.Shared.shproj", "{60DE5948-8EDA-4E34-B5BD-C3492D876FA0}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Blog.Shared\Blog.Shared.projitems*{60de5948-8eda-4e34-b5bd-c3492d876fa0}*SharedItemsImports = 13
+		Blog.Shared\Blog.Shared.projitems*{d0cd6656-8e29-4428-b6b5-bbbe0884b072}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
