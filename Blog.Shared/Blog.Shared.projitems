@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\UserServiceParas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Profiles\UserServiceProfiles.cs" />
   </ItemGroup>
 </Project>

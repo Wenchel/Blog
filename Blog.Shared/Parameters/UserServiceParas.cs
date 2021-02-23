@@ -11,7 +11,7 @@ namespace Blog.Shared.Parameters
 
     public class UserService_IsExistPara : UserServiceParaBase { }
 
-    public class UserService_SignUp : UserServiceParaBase {
+    public class UserService_SignUpPara : UserServiceParaBase {
         public string UserNickname { get; set; }
         public string UserPassword { get; set; }
         public string UserRePassword { get; set; }

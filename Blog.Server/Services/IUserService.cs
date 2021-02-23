@@ -21,7 +21,7 @@ namespace Blog.Server.Services
         /// 注册
         /// </summary>
         /// <returns>注册是否成功</returns>
-        Task<bool> SignUp(UserService_SignUp userService_SignUp);
+        Task<bool> SignUp(UserService_SignUpPara userService_SignUp);
 
         /// <summary>
         /// 用户是否存在

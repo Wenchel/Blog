@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Server.Helper;
+using Blog.Server.Services;
+using Blog.Server.ServicesImpl;
 using Blog.Shared.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +42,12 @@ namespace Blog.Server
             services.AddSingleton(fsql);//依赖注入
             dbHelper.SyncToDateBase();//同步实体到数据库
             services.AddFreeRepository(null, this.GetType().Assembly);
+            #endregion
+            #region 注入AutoMapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            #endregion
+            #region 注入服务
+            services.AddScoped<IUserService, UserServiceImpl>();
             #endregion
         }
 

@@ -24,8 +24,9 @@ namespace Blog.Shared.Entities
         public DateTime CreateUserTime { get; set; }
     }
     public enum Group
-    { 
-        Administrator,
-        User
+    {
+        User,
+        Administrator
+        
     }
 }
