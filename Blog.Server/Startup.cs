@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Server.Helper;
+using Blog.Shared.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,12 @@ namespace Blog.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog.Server", Version = "v1" });
             });
+            #region 注入FreeSQL
+            var dbHelper = new DbHelper(Configuration);
+            var fsql = dbHelper.FreeSql;//得到FreeSQL实例
+            services.AddSingleton(fsql);//依赖注入
+            dbHelper.SyncToDateBase();//同步实体到数据库
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
