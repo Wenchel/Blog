@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parameters\UserServiceParas.cs" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using FreeSql.DataAnnotations;
 namespace Blog.Shared.Entities
 {
     [Table(Name = "User")]
+    [Index("uk_useremail", "useremail", true)]
     public class User
     {
         [Column(IsPrimary = true)]

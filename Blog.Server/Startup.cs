@@ -39,6 +39,7 @@ namespace Blog.Server
             var fsql = dbHelper.FreeSql;//得到FreeSQL实例
             services.AddSingleton(fsql);//依赖注入
             dbHelper.SyncToDateBase();//同步实体到数据库
+            services.AddFreeRepository(null, this.GetType().Assembly);
             #endregion
         }
 
