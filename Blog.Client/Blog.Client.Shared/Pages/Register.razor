@@ -14,13 +14,13 @@
             </FormItem>
 
             <FormItem>
-                <InputPassword Placeholder="确认密码" @bind-Value="@context.UserRePassword" Size="@InputSize.Large"/>
+                <InputPassword Placeholder="确认密码" @bind-Value="@context.UserConfirmPassword" Size="@InputSize.Large"/>
             </FormItem>
             <FormItem>
                 <FormItem>
                     <Row Gutter="8">
                         <AntDesign.Col Span="16">
-                            <AntDesign.Input Placeholder="验证码" @bind-Value="@context.UserNickname" Size="@InputSize.Large"></AntDesign.Input>
+                            <AntDesign.Input Placeholder="验证码" @bind-Value="@context.UserVerificationCode" Size="@InputSize.Large"></AntDesign.Input>
                         </AntDesign.Col>
                         <AntDesign.Col Span="8">
                             <Button @ref="@VerificationCodeButton" Size="large" Block OnClick="SendVerificationCodeAsync">@VerificationCodeButtonText</Button>

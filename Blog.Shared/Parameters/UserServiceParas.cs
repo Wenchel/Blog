@@ -9,7 +9,7 @@ namespace Blog.Shared.Parameters
     {
         [Display(Name = "邮箱")]
         [Required(ErrorMessage = "{0}是必填项")]
-        [EmailAddress(ErrorMessage ="{0}是不合法的")]
+        [EmailAddress(ErrorMessage ="{0}不合法")]
         public string UserEmail { get; set; }
     }
 
@@ -31,6 +31,10 @@ namespace Blog.Shared.Parameters
         [Display(Name = "确认密码")]
         [Required(ErrorMessage = "{0}是必填项")]
         [Compare("UserPassword",ErrorMessage ="{0}和{1}不一致")]
-        public string UserRePassword { get; set; }
+        public string UserConfirmPassword { get; set; }
+
+        [Display(Name = "验证码")]
+        [Required(ErrorMessage = "{0}是必填项")]
+        public string UserVerificationCode { get; set; }
     }
 }

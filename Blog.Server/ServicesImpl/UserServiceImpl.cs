@@ -33,7 +33,7 @@ namespace Blog.Server.ServicesImpl
 
         public async Task<bool> SignUp(UserService_SignUpPara userService_SignUpPara)
         {
-            if (userService_SignUpPara.UserPassword != userService_SignUpPara.UserRePassword)//判断前后密码是否一致
+            if (userService_SignUpPara.UserPassword != userService_SignUpPara.UserConfirmPassword)//判断前后密码是否一致
             {
                 return false;
             }

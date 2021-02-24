@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Blog.Server.Helper;
 using Blog.Server.Services;
@@ -46,8 +48,19 @@ namespace Blog.Server
             #region 注入AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             #endregion
+            #region 注入邮件发送服务
+            services.AddFluentEmail("WenchelChow@yeah.net").AddSmtpSender(new SmtpClient
+            {
+                Host = "smtp.yeah.net",//smtp服务器地址
+                UseDefaultCredentials = false,//配合EnableSsl = true
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential("WenchelChow", "IVELHXCYDRPQFWIJ"),//用户名和授权码
+                EnableSsl = true//开启SSL
+            });
+            #endregion
             #region 注入服务
             services.AddScoped<IUserService, UserServiceImpl>();
+            services.AddScoped<IVerificationService, VerificationServiceImpl>();
             #endregion
         }
 
