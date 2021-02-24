@@ -1,0 +1,38 @@
+﻿@layout Blog.Client.Shared.Layouts.BasicLayout
+@page "/register"
+@inherits RegisterBase
+<div class="main__b__1">
+    <div class="register">
+        <h3>注册</h3>
+        <Form Model="@registerUser" OnFinish="OnFinish">
+            <FormItem>
+                <Input Placeholder="邮箱" @bind-Value="@context.UserEmail" Size="@InputSize.Large"/>
+            </FormItem>
+
+            <FormItem>
+                <InputPassword Placeholder="至少8位密码" @bind-Value="@context.UserPassword" Size="@InputSize.Large"/>
+            </FormItem>
+
+            <FormItem>
+                <InputPassword Placeholder="确认密码" @bind-Value="@context.UserRePassword" Size="@InputSize.Large"/>
+            </FormItem>
+            <FormItem>
+                <FormItem>
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="16">
+                            <AntDesign.Input Placeholder="验证码" @bind-Value="@context.UserNickname" Size="@InputSize.Large"></AntDesign.Input>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="8">
+                            <Button @ref="@VerificationCodeButton" Size="large" Block OnClick="SendVerificationCodeAsync">@VerificationCodeButtonText</Button>
+                        </AntDesign.Col>
+                    </Row>
+                </FormItem>
+            </FormItem>
+
+            <FormItem>
+                <button class="submit ant-btn ant-btn-primary ant-btn-lg" type="submit">注册</button>
+                <a class="login" href="/user/login">使用已有账户登录</a>
+            </FormItem>
+        </Form>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+<div class="container__b__0">
+    <div class="content">
+        <div class="top">
+            <div class="header">
+                <a>
+                    <img alt="logo" class="logo" src="logo.png" />
+                    
+                </a>
+            </div>
+        </div>
+        @Body
+    </div>
+    <GlobalFooter>
+        <Copyright>
+            Copyright <Icon Type="copyright" /> 2021 Wenchel's Blog
+        </Copyright>
+    </GlobalFooter>
+</div>
+
+<style>
+    .ant-pro-global-footer {
+        margin: 0px 0px;
+        padding: 10px 16px;
+        text-align: center;
+    }
+    #app {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
