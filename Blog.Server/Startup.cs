@@ -10,6 +10,8 @@ using Blog.Server.ServicesImpl;
 using Blog.Shared.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -54,10 +56,11 @@ namespace Blog.Server
                 Host = "smtp.yeah.net",//smtp服务器地址
                 UseDefaultCredentials = false,//配合EnableSsl = true
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("WenchelChow", "IVELHXCYDRPQFWIJ"),//用户名和授权码
+                Credentials = new NetworkCredential("WenchelChow", "GQWPUJBKPWUYYHSG"),//用户名和授权码
                 EnableSsl = true//开启SSL
             });
             #endregion
+
             #region 注入服务
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IVerificationService, VerificationServiceImpl>();
