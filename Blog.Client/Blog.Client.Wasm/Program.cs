@@ -17,10 +17,7 @@ namespace Blog.Client.Wasm
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
-
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress+"haha/") });
             builder.Services.AddAntDesign();
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddHttpClient("UserService", config =>
             {
                 config.BaseAddress = new Uri("https://localhost:5001/api/UserService/");
