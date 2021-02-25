@@ -62,7 +62,7 @@ namespace Blog.Client.Shared.PageBases
                     for (int i = 0; i < 120; i++)
                     {
                         await Task.Delay(1000);
-                        VerificationCodeButtonText = (119 - i).ToString();
+                        VerificationCodeButtonText = (119 - i).ToString()+"后重试";
                         StateHasChanged();
                     }
                     VerificationCodeButtonText = "获取验证码";
