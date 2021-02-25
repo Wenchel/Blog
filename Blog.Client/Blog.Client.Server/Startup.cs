@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AntDesign.Pro.Layout;
 using Microsoft.AspNetCore.Http;
-using Blog.Shared.Models;
 
 namespace Blog.Client.Server
 {
@@ -32,7 +31,6 @@ namespace Blog.Client.Server
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAntDesign();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient("UserService", config =>
             {
                 config.BaseAddress = new Uri("https://localhost:5001/api/UserService/");
@@ -42,8 +40,6 @@ namespace Blog.Client.Server
                 config.BaseAddress = new Uri("https://localhost:5001/api/VerificationService/");
             });
             services.Configure<ProSettings>(Configuration.GetSection("ProSettings"));
-            var hostUrl = Configuration.GetValue<string>("Urls");
-            services.AddSingleton<HostAddress>(new HostAddress() { Address = hostUrl });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

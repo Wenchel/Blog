@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using AntDesign;
 using Blog.Shared.DataTransferObjects;
 using Blog.Shared.Parameters;
-using Blog.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 
@@ -17,10 +16,6 @@ namespace Blog.Client.Shared.PageBases
 {
     public class RegisterBase : ComponentBase
     {
-        [Inject]
-        public IHttpContextAccessor HttpContextAccessor { get; set; }
-        [Inject]
-        public HostAddress HostAddress { get; set; }
         [Inject]
         public IHttpClientFactory ClientFactory { get; set; }
         [Inject]
@@ -37,15 +32,14 @@ namespace Blog.Client.Shared.PageBases
 
         public async Task SendVerificationCodeAsync()
         {
-            var hostUrl = $"{HostAddress.Address}";
-            var para = new VerificationService_GetVerificationCodePara() { ClientAdress= hostUrl, EmailAddress= RegisterUser.UserEmail };
+            var para = new VerificationService_GetVerificationCodePara() { EmailAddress= RegisterUser.UserEmail };
             var validateResults = new List<ValidationResult>();
             Validator.TryValidateObject(para, new ValidationContext(para), validateResults, true);
             if (validateResults.Count>0)
             {
                 foreach (var error in validateResults)
                 {
-                    await Message.Error($"{error.ErrorMessage}");
+                    _ = Message.Error($"{error.ErrorMessage}");
                 }
                 return;
             }
@@ -56,7 +50,7 @@ namespace Blog.Client.Shared.PageBases
                 var result = await response.Content.ReadFromJsonAsync<VerificationService_GetVerificationCodeDto>();
                 if (result.IsSuccess)
                 {
-                    await Message.Success($"{result.Message}");
+                    _ = Message.Success($"{result.Message}");
 
                     VerificationCodeButton.Disabled = true;
                     for (int i = 0; i < 120; i++)
@@ -71,12 +65,12 @@ namespace Blog.Client.Shared.PageBases
                 }
                 else
                 {
-                    await Message.Error($"{result.Message}");
+                    _ = Message.Error($"{result.Message}");
                 }
             }
             catch (Exception e)
             {
-                await Message.Error($"{e.Message}");
+                _ = Message.Error($"{e.Message}");
             }
             
 

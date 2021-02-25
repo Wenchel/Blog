@@ -14,6 +14,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\UserServiceParas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\VerificationServiceParas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Profiles\UserServiceProfiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\HostAddress.cs" />
   </ItemGroup>
 </Project>
