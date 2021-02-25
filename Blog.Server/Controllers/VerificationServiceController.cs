@@ -6,6 +6,7 @@ using Blog.Server.Services;
 using Blog.Shared.Parameters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Blog.Server.Controllers
 {
@@ -14,7 +15,6 @@ namespace Blog.Server.Controllers
     public class VerificationServiceController : ControllerBase
     {
         private readonly IVerificationService _verificationService;
-
         public VerificationServiceController(IVerificationService verificationService)
         {
             _verificationService = verificationService;

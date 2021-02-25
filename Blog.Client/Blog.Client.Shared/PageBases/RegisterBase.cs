@@ -24,10 +24,10 @@ namespace Blog.Client.Shared.PageBases
         public async Task SendVerificationCodeAsync()
         {
             VerificationCodeButton.Disabled = true;
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 120; i++)
             {
                 await Task.Delay(1000);
-                VerificationCodeButtonText = (59 - i).ToString();
+                VerificationCodeButtonText = (119 - i).ToString();
                 StateHasChanged();
             }
             VerificationCodeButtonText= "获取验证码";

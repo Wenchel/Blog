@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>fe4a31a5-814d-4864-9b65-474d1379078f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +10,7 @@
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
     <PackageReference Include="FreeSql.Provider.MySql" Version="2.3.100" />
     <PackageReference Include="FreeSql.Repository" Version="2.3.100" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="NETCore.Encrypt" Version="2.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
   </ItemGroup>

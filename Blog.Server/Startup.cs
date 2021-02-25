@@ -60,7 +60,9 @@ namespace Blog.Server
                 EnableSsl = true//开启SSL
             });
             #endregion
-
+            #region 注入缓存
+            services.AddMemoryCache();
+            #endregion
             #region 注入服务
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IVerificationService, VerificationServiceImpl>();
