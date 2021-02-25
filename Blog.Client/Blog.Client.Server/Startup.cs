@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AntDesign.Pro.Layout;
+using Microsoft.AspNetCore.Http;
 
 namespace Blog.Client.Server
 {
@@ -25,14 +26,20 @@ namespace Blog.Client.Server
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment environment)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAntDesign();
-			services.AddScoped(sp => new HttpClient
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            var a=environment.WebRootPath;
+            services.AddHttpClient("UserService", config =>
             {
-                BaseAddress = new Uri("https://127.0.0.1/qwerty/")
+                config.BaseAddress = new Uri("https://localhost:5001/api/UserService/");
+            });
+            services.AddHttpClient("VerificationService", config =>
+            {
+                config.BaseAddress = new Uri("https://localhost:5001/api/VerificationService/");
             });
             services.Configure<ProSettings>(Configuration.GetSection("ProSettings"));
         }

@@ -27,6 +27,6 @@ namespace Blog.Shared.Entities
     {
         User,
         Administrator
-        
+
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace Blog.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserServiceController : ControllerBase
     {
         private readonly IUserService _userService;

@@ -22,7 +22,7 @@ namespace Blog.Server.ServicesImpl
         public async Task<VerificationService_GetVerificationCodeDto> GetVerificationCode(VerificationService_GetVerificationCodePara verificationService_GetVerificationCodePara)
         {
             var code = Guid.NewGuid().ToString().Split("-")[0].ToUpper();
-            var imgUrl = verificationService_GetVerificationCodePara.ClientAdress+"logo.png";
+            var imgUrl = verificationService_GetVerificationCodePara.ClientAdress+"/logo.png";
             var content = $@"<div align='center'><img src='{imgUrl}' height='150px'></div>
                              <h3 align='left'>Wenchel Blog用户，您好！</h3>
                              <p>您的验证码为：</p><br/>
@@ -36,7 +36,7 @@ namespace Blog.Server.ServicesImpl
                 if (result.Successful)
                 {
                     _memoryCache.Set(verificationService_GetVerificationCodePara.EmailAddress, code, TimeSpan.FromMinutes(5));
-                    return new VerificationService_GetVerificationCodeDto() { IsSuccess=true, Message="获取验证码成功！" };
+                    return new VerificationService_GetVerificationCodeDto() { IsSuccess=true, Message="获取验证码成功！5分钟内有效！" };
                 }
                 else
                 {
