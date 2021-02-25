@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Server.Services;
+using Blog.Shared.Parameters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +20,9 @@ namespace Blog.Server.Controllers
             _verificationService = verificationService;
         }
         [HttpPost]
-        public async Task<IActionResult> GetVerificationCodeAsync([FromBody] string emailAddress)
+        public async Task<IActionResult> GetVerificationCodeAsync([FromBody] VerificationService_GetVerificationCodePara verificationService_GetVerificationCodePara)
         {
-            var result = await _verificationService.GetVerificationCode(emailAddress);
+            var result = await _verificationService.GetVerificationCode(verificationService_GetVerificationCodePara);
             return Ok(result);
         }
     }

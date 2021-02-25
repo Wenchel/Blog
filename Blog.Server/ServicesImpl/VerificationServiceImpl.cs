@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Blog.Server.Services;
+using Blog.Shared.Parameters;
 using FluentEmail.Core;
 using FluentEmail.Smtp;
 using Microsoft.AspNetCore.Hosting.Server.Features;
@@ -21,9 +22,10 @@ namespace Blog.Server.ServicesImpl
             _fluentEmail = fluentEmail;
         }
 
-        public async Task<bool> GetVerificationCode(string emailAddress)
+        public async Task<bool> GetVerificationCode(VerificationService_GetVerificationCodePara verificationService_GetVerificationCodePara)
         {
             var code = Guid.NewGuid().ToString().Split("-")[0].ToUpper();
+            var imgUrl = verificationService_GetVerificationCodePara.ClientAdress+"logo.png";
             var content = $@"<div align='center'>
     <img src='./logo.png' height='150px'>
 </div>
@@ -41,7 +43,7 @@ namespace Blog.Server.ServicesImpl
 <br/>
 <br/>
 祝您生活愉快，<br/>Wenchel";
-            var result = await _fluentEmail.To(emailAddress).Subject("Wenchel验证码").Body(content,true).SendAsync();
+            var result = await _fluentEmail.To(verificationService_GetVerificationCodePara.EmailAddress).Subject("Wenchel Blog 验证码").Body(content, true).SendAsync();
             if (result.Successful)
             {
                 return true;
@@ -50,7 +52,7 @@ namespace Blog.Server.ServicesImpl
             {
                 return false;
             }
-            
+
         }
     }
 }
