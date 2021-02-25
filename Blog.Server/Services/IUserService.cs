@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Shared.DataTransferObjects;
 using Blog.Shared.Parameters;
 
 namespace Blog.Server.Services
@@ -21,7 +22,7 @@ namespace Blog.Server.Services
         /// 注册
         /// </summary>
         /// <returns>注册是否成功</returns>
-        Task<bool> SignUp(UserService_SignUpPara userService_SignUp);
+        Task<UserService_SignUpDto> SignUp(UserService_SignUpPara userService_SignUp);
 
         /// <summary>
         /// 用户是否存在

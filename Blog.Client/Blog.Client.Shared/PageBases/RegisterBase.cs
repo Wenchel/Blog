@@ -10,6 +10,7 @@ using AntDesign;
 using Blog.Shared.DataTransferObjects;
 using Blog.Shared.Parameters;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 
 namespace Blog.Client.Shared.PageBases
@@ -25,9 +26,26 @@ namespace Blog.Client.Shared.PageBases
         public UserService_SignUpPara RegisterUser { get; set; } = new UserService_SignUpPara();
         
 
-        public void OnFinish()
+        public void OnFinish(EditContext editContext)
         {
-            Console.WriteLine($"Success");
+            //var client = ClientFactory.CreateClient("UserService");
+            //try
+            //{
+            //    var response = await client.PostAsJsonAsync("", RegisterUser);
+            //    var result = await response.Content.ReadFromJsonAsync<UserService_SignUpDto>();
+            //    if (result.IsSuccess)
+            //    {
+            //        _ = Message.Success($"{result.Message}");
+            //    }
+            //    else
+            //    {
+            //        _ = Message.Error($"{result.Message}");
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    _ = Message.Error($"{e.Message}");
+            //}
         }
 
         public async Task SendVerificationCodeAsync()

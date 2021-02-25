@@ -4,7 +4,7 @@
 <div class="main__b__1">
     <div class="register">
         <h3>注册</h3>
-        <Form Model="@RegisterUser" OnFinish="OnFinish">
+        <Form Model="@RegisterUser" OnFinish="@OnFinish">
             <FormItem>
                 <Input Placeholder="邮箱" @bind-Value="@context.UserEmail" Size="@InputSize.Large"/>
             </FormItem>
