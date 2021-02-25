@@ -40,6 +40,17 @@ namespace Blog.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog.Server", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+
+                options.AddPolicy("any", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+
+                });
+            });
             #region 注入FreeSQL
             var dbHelper = new DbHelper(Configuration);
             var fsql = dbHelper.FreeSql;//得到FreeSQL实例
@@ -72,6 +83,7 @@ namespace Blog.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("any");//使用跨域访问
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

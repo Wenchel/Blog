@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using AntDesign;
 using Blog.Shared.DataTransferObjects;
 using Blog.Shared.Parameters;
+using Blog.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 
@@ -18,6 +19,8 @@ namespace Blog.Client.Shared.PageBases
     {
         [Inject]
         public IHttpContextAccessor HttpContextAccessor { get; set; }
+        [Inject]
+        public HostAddress HostAddress { get; set; }
         [Inject]
         public IHttpClientFactory ClientFactory { get; set; }
         [Inject]
@@ -34,7 +37,7 @@ namespace Blog.Client.Shared.PageBases
 
         public async Task SendVerificationCodeAsync()
         {
-            var hostUrl = $"{HttpContextAccessor.HttpContext.Request.Scheme}://{HttpContextAccessor.HttpContext.Request.Host.Value}";
+            var hostUrl = $"{HostAddress.Address}";
             var para = new VerificationService_GetVerificationCodePara() { ClientAdress= hostUrl, EmailAddress= RegisterUser.UserEmail };
             var validateResults = new List<ValidationResult>();
             Validator.TryValidateObject(para, new ValidationContext(para), validateResults, true);

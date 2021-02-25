@@ -8,6 +8,7 @@ using Blog.Client.Shared;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
+using Blog.Shared.Models;
 
 namespace Blog.Client.Wasm
 {
@@ -32,7 +33,8 @@ namespace Blog.Client.Wasm
             
 
             builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
-
+            var hostUrl = builder.HostEnvironment.BaseAddress;
+            builder.Services.AddSingleton<HostAddress>(new HostAddress() { Address= hostUrl });
             await builder.Build().RunAsync();
         }
     }
