@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DataTransferObjects\UserServiceDtos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTransferObjects\VerificationServiceDtos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Blog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BlogClassification.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\UserServiceParas.cs" />

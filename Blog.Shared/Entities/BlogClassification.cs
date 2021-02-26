@@ -21,5 +21,10 @@ namespace Blog.Shared.Entities
         /// 分类名称
         /// </summary>
         public string ClassificationName { get; set; }
+        /// <summary>
+        /// 分类下的博客
+        /// </summary>
+        [Navigate(nameof(Blog.ClassificationId))]
+        public List<Blog> Blogs { get; set; }
     }
 }

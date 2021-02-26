@@ -77,6 +77,7 @@ namespace Blog.Server
             #region ×¢Èë·þÎñ
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IVerificationService, VerificationServiceImpl>();
+            services.AddScoped<IBlogService, BlogServiceImpl>();
             #endregion
         }
 
