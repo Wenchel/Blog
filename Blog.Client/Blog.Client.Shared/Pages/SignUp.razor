@@ -1,22 +1,24 @@
 ﻿@layout Blog.Client.Shared.Layouts.BasicLayout
-@page "/register"
-@inherits RegisterBase
+@page "/sign-up"
+@inherits SignUpBase
 <div class="main__b__1">
     <div class="register">
         <h3>注册</h3>
-        <Form Model="@RegisterUser" OnFinish="@OnFinish">
+        <Form Model="@SignUpUser" OnFinish="OnFinishAsync">
             <FormItem>
-                <Input Placeholder="邮箱" @bind-Value="@context.UserEmail" Size="@InputSize.Large"/>
+                <Input Placeholder="邮箱" @bind-Value="@context.UserEmail" Size="@InputSize.Large" />
+            </FormItem>
+            <FormItem>
+                <Input Placeholder="昵称" @bind-Value="@context.UserNickname" Size="@InputSize.Large" />
+            </FormItem>
+            <FormItem>
+                <InputPassword Placeholder="至少8位密码" @bind-Value="@context.UserPassword" Size="@InputSize.Large" />
             </FormItem>
 
             <FormItem>
-                <InputPassword Placeholder="至少8位密码" @bind-Value="@context.UserPassword" Size="@InputSize.Large"/>
+                <InputPassword Placeholder="确认密码" @bind-Value="@context.UserConfirmPassword" Size="@InputSize.Large" />
             </FormItem>
-
-            <FormItem>
-                <InputPassword Placeholder="确认密码" @bind-Value="@context.UserConfirmPassword" Size="@InputSize.Large"/>
-            </FormItem>
-            <FormItem>
+            
                 <FormItem>
                     <Row Gutter="8">
                         <AntDesign.Col Span="16">
@@ -27,12 +29,25 @@
                         </AntDesign.Col>
                     </Row>
                 </FormItem>
-            </FormItem>
+            
 
-            <FormItem>
+            <FormItem Style="margin-bottom:0px">
                 <button class="submit ant-btn ant-btn-primary ant-btn-lg" type="submit">注册</button>
-                <a class="login" href="/user/login">使用已有账户登录</a>
+                <a class="login" href="/sign-in">使用已有账户登录</a>
             </FormItem>
         </Form>
     </div>
 </div>
+<Modal Title="@null"
+       Visible="@_visible"
+       Closable="false"
+       Keyboard="false"
+       Footer="@null">
+    <Result Status="success"
+            Title="注册成功"
+            SubTitle="@SuccessWait">
+        @*<Extra>
+            <Button Type="primary">登录</Button>
+        </Extra>*@
+    </Result>
+</Modal>

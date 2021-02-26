@@ -4,13 +4,17 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;BL0005</NoWarn>
+  </PropertyGroup>
+
   
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AntDesign" Version="0.6.0" />
+    <PackageReference Include="AntDesign" Version="0.7.0-nightly-2102241614" />
     <PackageReference Include="AntDesign.Pro.Layout" Version="0.1.0-nightly-210129055145" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="FreeSql" Version="2.3.100" />
