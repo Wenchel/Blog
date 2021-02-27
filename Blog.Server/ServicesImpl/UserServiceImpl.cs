@@ -30,29 +30,20 @@ namespace Blog.Server.ServicesImpl
             return await _userRepository.Select.AnyAsync(it => it.UserEmail == userService_IsExistPara.UserEmail);
         }
 
-        public async Task<UserService_SignInDto> SignIn(UserService_SignInPara userService_SignInPara)
+        public async Task<bool> SignIn(UserService_SignInPara userService_SignInPara)
         {
-            
             if (await _userRepository.Select.Where(it=>it.UserEmail== userService_SignInPara.UserEmail).FirstAsync(it=>it.UserPassword)!= _mapper.Map<User>(userService_SignInPara).UserPassword)
-            {
-                return new UserService_SignInDto() { IsSuccess=false,Message="账号或密码错误！" };
-            }
-            return new UserService_SignInDto() { IsSuccess = true, Message = "登录成功！" };
+                return false;
+            return true;
         }
 
-        public async Task<UserService_SignUpDto> SignUp(UserService_SignUpPara userService_SignUpPara)
+        public async Task<bool> SignUp(UserService_SignUpPara userService_SignUpPara)
         {
-            if (await IsExist(_mapper.Map<UserService_IsExistPara>(userService_SignUpPara)))//判断是否已注册
-            {
-                return new UserService_SignUpDto() { IsSuccess=false, Message="该邮箱已经被注册！" };
-            }
             if (userService_SignUpPara.UserVerificationCode != _memoryCache.Get(userService_SignUpPara.UserEmail)?.ToString())//判断验证码是否有效
-            {
-                return new UserService_SignUpDto() { IsSuccess = false, Message = "验证码错误或已失效！" };
-            }
+                return false;
             var willInsert = _mapper.Map<User>(userService_SignUpPara);
             await _userRepository.InsertAsync(willInsert);
-            return new UserService_SignUpDto() { IsSuccess = true, Message = "注册成功！" };
+            return true;
         }
     }
 }

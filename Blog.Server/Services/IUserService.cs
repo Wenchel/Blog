@@ -16,13 +16,13 @@ namespace Blog.Server.Services
         /// 登录
         /// </summary>
         /// <returns>登录是否成功</returns>
-        Task<UserService_SignInDto> SignIn(UserService_SignInPara userService_SignInPara);
+        Task<bool> SignIn(UserService_SignInPara userService_SignInPara);
 
         /// <summary>
         /// 注册
         /// </summary>
         /// <returns>注册是否成功</returns>
-        Task<UserService_SignUpDto> SignUp(UserService_SignUpPara userService_SignUp);
+        Task<bool> SignUp(UserService_SignUpPara userService_SignUp);
 
         /// <summary>
         /// 用户是否存在
