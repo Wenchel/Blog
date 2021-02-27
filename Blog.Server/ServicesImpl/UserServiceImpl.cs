@@ -9,6 +9,7 @@ using Blog.Shared.DataTransferObjects;
 using Blog.Shared.Entities;
 using Blog.Shared.Parameters;
 using Microsoft.Extensions.Caching.Memory;
+using NETCore.Encrypt;
 
 namespace Blog.Server.ServicesImpl
 {
@@ -32,7 +33,7 @@ namespace Blog.Server.ServicesImpl
 
         public async Task<bool> SignIn(UserService_SignInPara userService_SignInPara)
         {
-            if (await _userRepository.Select.Where(it=>it.UserEmail== userService_SignInPara.UserEmail).FirstAsync(it=>it.UserPassword)!= _mapper.Map<User>(userService_SignInPara).UserPassword)
+            if (await _userRepository.Select.Where(it=>it.UserEmail== userService_SignInPara.UserEmail).FirstAsync(it=>it.UserPassword)!= EncryptProvider.Sha256(userService_SignInPara.UserPassword))
                 return false;
             return true;
         }
