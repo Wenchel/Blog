@@ -13,9 +13,9 @@ namespace Blog.Shared.Profiles
         public UserServiceProfiles()
         {
             CreateMap<UserService_IsExistPara, User>();
-            CreateMap<UserService_SignUpPara, User>()
-                .ForMember(dest => dest.UserPassword, opt => opt.MapFrom(src => EncryptProvider.Sha256(src.UserPassword)));
+            CreateMap<UserService_SignUpPara, User>().ForMember(dest => dest.UserPassword, opt => opt.MapFrom(src => EncryptProvider.Sha256(src.UserPassword)));
             CreateMap<UserService_SignUpPara, UserService_IsExistPara>();
+            CreateMap<UserService_SignInPara, User>().ForMember(dest => dest.UserPassword, opt => opt.MapFrom(src => EncryptProvider.Sha256(src.UserPassword)));
 
 
         }

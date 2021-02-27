@@ -30,9 +30,14 @@ namespace Blog.Server.ServicesImpl
             return await _userRepository.Select.AnyAsync(it => it.UserEmail == userService_IsExistPara.UserEmail);
         }
 
-        public Task<bool> SignIn()
+        public async Task<UserService_SignInDto> SignIn(UserService_SignInPara userService_SignInPara)
         {
-            throw new NotImplementedException();
+            
+            if (await _userRepository.Select.Where(it=>it.UserEmail== userService_SignInPara.UserEmail).FirstAsync(it=>it.UserPassword)!= _mapper.Map<User>(userService_SignInPara).UserPassword)
+            {
+                return new UserService_SignInDto() { IsSuccess=false,Message="账号或密码错误！" };
+            }
+            return new UserService_SignInDto() { IsSuccess = true, Message = "登录成功！" };
         }
 
         public async Task<UserService_SignUpDto> SignUp(UserService_SignUpPara userService_SignUpPara)

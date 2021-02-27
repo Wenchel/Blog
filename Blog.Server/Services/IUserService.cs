@@ -16,7 +16,7 @@ namespace Blog.Server.Services
         /// 登录
         /// </summary>
         /// <returns>登录是否成功</returns>
-        Task<bool> SignIn();
+        Task<UserService_SignInDto> SignIn(UserService_SignInPara userService_SignInPara);
 
         /// <summary>
         /// 注册

@@ -42,7 +42,7 @@ namespace Blog.Client.Shared.PageBases
             var client = ClientFactory.CreateClient("UserService");
             try
             {
-                var response = await client.PostAsJsonAsync("", SignUpUser);
+                var response = await client.PostAsJsonAsync("SignUp", SignUpUser);
                 var result = await response.Content.ReadFromJsonAsync<UserService_SignUpDto>();
                 if (result.IsSuccess)
                 {

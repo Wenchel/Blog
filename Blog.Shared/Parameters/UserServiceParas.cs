@@ -37,4 +37,11 @@ namespace Blog.Shared.Parameters
         [Required(ErrorMessage = "{0}是必填项")]
         public string UserVerificationCode { get; set; }
     }
+
+    public class UserService_SignInPara : UserServiceParaBase
+    {
+        [Display(Name = "密码")]
+        [Required(ErrorMessage = "{0}是必填项")]
+        public string UserPassword { get; set; }
+    }
 }

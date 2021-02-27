@@ -22,10 +22,16 @@ namespace Blog.Server.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] UserService_SignUpPara userService_SignUpPara)
+        [HttpPost("SignUp")]
+        public async Task<IActionResult> SignUpAsync([FromBody] UserService_SignUpPara userService_SignUpPara)
         {
             var result=await _userService.SignUp(userService_SignUpPara);
+            return Ok(result);
+        }
+        [HttpPost("SignIn")]
+        public async Task<IActionResult> SignInAsync([FromBody] UserService_SignInPara userService_SignInPara)
+        {
+            var result = await _userService.SignIn(userService_SignInPara);
             return Ok(result);
         }
     }
