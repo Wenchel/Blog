@@ -23,8 +23,6 @@ namespace Blog.Client.Shared.PageBases
         [Inject]
         public MessageService Message { get; set; }
         [Inject]
-        public ModalService Modal { get; set; }
-        [Inject]
         public NavigationManager Navigation { get; set; }
         public string VerificationCodeButtonText { get; set; } = "获取验证码";
         public Button VerificationCodeButton { get; set; }

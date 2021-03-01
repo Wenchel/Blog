@@ -3,27 +3,30 @@
 @inherits SignInBase
 <div class="main__b__0">
     <div class="login">
-        <Form Model="@SignInUser">
+        <Form Model="@SignInUser" OnFinish="OnFinishAsync" Loading="@Loading">
             <Tabs>
                 <TabPane Key="1">
                     <Tab>账户密码登录</Tab>
                     <ChildContent>
                         <FormItem>
-                            <AntDesign.Input Placeholder="用户名: admin or user" Size="large" @bind-Value="@context.UserEmail">
+                            <AntDesign.Input Placeholder="邮箱地址" Size="large" @bind-Value="@context.UserEmail">
                                 <Prefix><Icon Type="user" /></Prefix>
                             </AntDesign.Input>
                         </FormItem>
                         <FormItem>
-                            <AntDesign.Input Placeholder="密码: ant.design" Size="large" @bind-Value="@context.UserPassword" Type="password">
+                            <InputPassword Placeholder="密码" Size="large" @bind-Value="@context.UserPassword" Type="password">
                                 <Prefix><Icon Type="lock" /></Prefix>
-                            </AntDesign.Input>
+                            </InputPassword>
                         </FormItem>
                     </ChildContent>
                 </TabPane>
                 <TabPane Key="2">
-                    <Tab>手机号登录</Tab>
+                    <Tab>验证码登录</Tab>
                     <ChildContent>
-                        <FormItem>
+                        <br />
+                        ToDo
+                        <br />
+                        @*<FormItem>
                             <AntDesign.Input Placeholder="手机号" Size="large" @bind-Value="@context.UserEmail">
                                 <Prefix><Icon Type="mobile" /></Prefix>
                             </AntDesign.Input>
@@ -39,12 +42,12 @@
                                     <Button Size="large" Block >获取验证码</Button>
                                 </AntDesign.Col>
                             </Row>
-                        </FormItem>
+                        </FormItem>*@
                     </ChildContent>
                 </TabPane>
             </Tabs>
             <div>
-                <Checkbox Checked="false">
+                <Checkbox Checked="true">
                     自动登录
                 </Checkbox>
                 <a style="float: right;">
@@ -54,10 +57,10 @@
             <button class="submit ant-btn ant-btn-primary ant-btn-lg" type="submit">登&nbsp;录</button>
             <div class="other">
                 其他登录方式
-                <Icon Type="alipay-circle" />
-                <Icon Type="taobao-circle" />
-                <Icon Type="weibo-circle" />
-                <a class="register" href="/user/register">注册账户</a>
+                <Icon Type="alipay-circle" Style="vertical-align: middle" />
+                <Icon Type="taobao-circle" Style="vertical-align: middle" />
+                <Icon Type="weibo-circle" Style="vertical-align: middle" />
+                <a class="register" href="/sign-up">注册账户</a>
             </div>
         </Form>
     </div>
