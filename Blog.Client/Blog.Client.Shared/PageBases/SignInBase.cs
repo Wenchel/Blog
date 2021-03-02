@@ -25,37 +25,39 @@ namespace Blog.Client.Shared.PageBases
         public async Task OnFinishAsync()
         {
             var client = ClientFactory.CreateClient("UserService");
+            var messageConfig = new MessageConfig()
+            {
+                Content = "正在登录...",
+                Duration = 1000,
+                Key= "SignIn"
+            };
             try
             {
                 Loading = true;
+                _ = Message.Loading(messageConfig);
                 var response = await client.PostAsJsonAsync("SignIn", SignInUser);
                 var result = await response.Content.ReadFromJsonAsync<UserService_SignInDto>();
                 if (result.IsSuccess)
                 {
-                    _ = Message.Success($"{result.Message}");
-                    //_visible = true;
-                    //for (int i = 0; i < 3; i++)
-                    //{
-                    //    await Task.Delay(1000);
-                    //    //SuccessWait = $"{2 - i}秒后跳转到登录界面";
-                    //    StateHasChanged();
-                    //}
-                    //await Task.Delay(200);
-                    ////_visible = false;
-                    //await Task.Delay(200);
                     Loading = false;
-                    //Navigation.NavigateTo("/sign-in");
+                    messageConfig.Content = $"登录成功：{result.Message}";
+                    messageConfig.Duration = 1;
+                    await Message.Success(messageConfig).ContinueWith(re=> { Navigation.NavigateTo(""); });            
                 }
                 else
                 {
-                    _ = Message.Error($"{result.Message}");
                     Loading = false;
+                    messageConfig.Content = $"登录失败：{result.Message}";
+                    messageConfig.Duration = 1;
+                    _ = Message.Error(messageConfig);
                 }
             }
             catch (Exception e)
             {
-                _ = Message.Error($"{e.Message}");
                 Loading = false;
+                messageConfig.Content = $"登录出错：{e.Message}";
+                messageConfig.Duration = 3;
+                _ = Message.Error(messageConfig);
             }
         }
     }

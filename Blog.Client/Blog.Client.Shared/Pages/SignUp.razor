@@ -4,7 +4,7 @@
 <div class="main__b__1">
     <div class="register">
         <h3>注册</h3>
-        <Form Model="@SignUpUser" OnFinish="OnFinishAsync">
+        <Form Model="@SignUpUser" OnFinish="OnFinishAsync" Loading="@Loading">
             <FormItem>
                 <Input Placeholder="邮箱" @bind-Value="@context.UserEmail" Size="@InputSize.Large" />
             </FormItem>
@@ -36,13 +36,3 @@
         </Form>
     </div>
 </div>
-<Modal Title="@null"
-       Visible="@_visible"
-       Closable="false"
-       Keyboard="false"
-       Footer="@null">
-    <Result Status="success"
-            Title="注册成功"
-            SubTitle="@SuccessWait">
-    </Result>
-</Modal>

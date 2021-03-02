@@ -27,43 +27,46 @@ namespace Blog.Client.Shared.PageBases
         public string VerificationCodeButtonText { get; set; } = "获取验证码";
         public Button VerificationCodeButton { get; set; }
         public UserService_SignUpPara SignUpUser { get; set; } = new UserService_SignUpPara();
-
-        public string SuccessWait { get; set; } = "3秒后跳转到登录界面";
-
-        public bool _visible = false;
-        public bool _loading = false;
+        public bool Loading { get; set; }=false;
 
 
 
         public async Task OnFinishAsync()
         {
             var client = ClientFactory.CreateClient("UserService");
+            var messageConfig = new MessageConfig()
+            {
+                Content = "正在注册...",
+                Duration = 1000,
+                Key = "SignUp"
+            };
             try
             {
+                Loading = true;
+                _ = Message.Loading(messageConfig);
                 var response = await client.PostAsJsonAsync("SignUp", SignUpUser);
                 var result = await response.Content.ReadFromJsonAsync<UserService_SignUpDto>();
                 if (result.IsSuccess)
                 {
-                    _visible = true;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        await Task.Delay(1000);
-                        SuccessWait = $"{2 - i}秒后跳转到登录界面";
-                        StateHasChanged();
-                    }
-                    await Task.Delay(200);
-                    _visible = false;
-                    await Task.Delay(200);
-                    Navigation.NavigateTo("/sign-in");
+                    Loading = false;
+                    messageConfig.Content = $"注册成功：{result.Message}";
+                    messageConfig.Duration = 1;
+                    await Message.Success(messageConfig).ContinueWith(re => { Navigation.NavigateTo("/sign-in"); });
                 }
                 else
                 {
-                    _ = Message.Error($"{result.Message}");
+                    Loading = false;
+                    messageConfig.Content = $"注册失败：{result.Message}";
+                    messageConfig.Duration = 1;
+                    _ = Message.Error(messageConfig);
                 }
             }
             catch (Exception e)
             {
-                _ = Message.Error($"{e.Message}");
+                Loading = false;
+                messageConfig.Content = $"注册出错：{e.Message}";
+                messageConfig.Duration = 3;
+                _ = Message.Error(messageConfig);
             }
         }
 
@@ -81,13 +84,22 @@ namespace Blog.Client.Shared.PageBases
                 return;
             }
             var client = ClientFactory.CreateClient("VerificationService");
+            var messageConfig = new MessageConfig()
+            {
+                Content = "正在发送验证码...",
+                Duration = 1000,
+                Key = "Code"
+            };
             try
             {
+                _ = Message.Loading(messageConfig);
                 var response = await client.PostAsJsonAsync("", para);
                 var result = await response.Content.ReadFromJsonAsync<VerificationService_GetVerificationCodeDto>();
                 if (result.IsSuccess)
                 {
-                    _ = Message.Success($"{result.Message}");
+                    messageConfig.Content = $"获取成功：{result.Message}";
+                    messageConfig.Duration = 1;
+                    _ = Message.Success(messageConfig);
 
                     VerificationCodeButton.Disabled = true;
                     for (int i = 0; i < 120; i++)
@@ -102,12 +114,16 @@ namespace Blog.Client.Shared.PageBases
                 }
                 else
                 {
-                    _ = Message.Error($"{result.Message}");
+                    messageConfig.Content = $"获取失败：{result.Message}";
+                    messageConfig.Duration = 1;
+                    _ = Message.Error(messageConfig);
                 }
             }
             catch (Exception e)
             {
-                _ = Message.Error($"{e.Message}");
+                messageConfig.Content = $"获取出错：{e.Message}";
+                messageConfig.Duration = 3;
+                _ = Message.Error(messageConfig);
             }
             
 
