@@ -1,4 +1,173 @@
 ﻿@page "/"
-<h1>
-    主页
-</h1>
+<div>
+    <Row Gutter="@Gutter">
+        <GridCol Xs="24" Sm="24" Md="6" Lg="6" Xl="6" Xxl="6" >
+            <Card Style="margin-bottom: 24px;">
+                <div class="avatarHolder">
+                    <img alt="" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png" />
+                    <div className="name">周文强</div>
+                    <div>好事多磨</div>
+                </div>
+
+                <div class="detail">
+                    <p>
+                        <Icon Type="contacts" Theme="outline" Style="margin-right:8px;" />
+                        xxx
+                    </p>
+                    <p>
+                        <Icon Type="cluster" Theme="outline" Style="margin-right:8px;" />
+                        xxx
+                    </p>
+                    <p>
+                        <Icon Type="home" Theme="outline" Style="margin-right:8px;" />
+                        <!--todo: add userinfo-->
+                        xxx
+                        xxxxx
+                    </p>
+                </div>
+
+                <Divider Dashed />
+
+                <div class="tags">
+                    <div class="tagsTitle">标签</div>
+                    <Tag>帅气</Tag>
+                </div>
+
+                <Divider Dashed Style="margin-top: 16px;" />
+
+                <div class="team">
+                    <div class="teamTitle">团队</div>
+                    <!--todo: add notice-->
+                </div>
+            </Card>
+        </GridCol>
+        <GridCol Xs="24" Sm="24" Md="12" Lg="12" Xl="12" Xxl="12">
+
+
+            <AntList TItem="BasicItem"
+                     Class="coverCardList"
+                     DataSource="@Data">
+                <ChildContent Context="context">
+                    <ListItem NoFlex>
+                        <Card Class="card" Style="width:100%" Hoverable Bordered>
+                            <Cover>
+                                <img alt="@context.Title" src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" />
+                            </Cover>
+                            <ChildContent>
+                                <CardMeta>
+                                    <DescriptionTemplate>@context.Title</DescriptionTemplate>
+                                    <TitleTemplate><a>@context.Title</a></TitleTemplate>
+                                </CardMeta>
+                                <div class="cardItemContent">
+                                    相关内容......
+                                </div>
+                            </ChildContent>
+
+                        </Card>
+                    </ListItem>
+                </ChildContent>
+                    <LoadMore>
+                        @if (!InitLoading && !Loading)
+                        {
+                            <div class="demo-loadmore-btn-content ">
+                                <Button OnClick="OnLoadMore">loading more</Button>
+                            </div>
+                        }
+                    </LoadMore>
+            </AntList>
+
+        </GridCol>
+        <GridCol Xs="24" Sm="24" Md="6" Lg="6" Xl="6" Xxl="6">
+            <Row Style="margin-bottom: 24px;">
+                <GridCol Xs="24" Sm="24" Md="24" Lg="24" Xl="24" Xxl="24">
+                    <Card Style="margin-bottom: 24px;">
+                        <div class="tags">
+                            <div class="tagsTitle">最近更新</div>
+                            <AntList TItem="BasicItem"
+                                     Size="large"
+                                     Class="articleList"
+                                     DataSource="@Data.Take(3)">
+                                <ListItem NoFlex>
+                                    <ListItemMeta Description="">
+                                        <TitleTemplate>
+                                            <a href="https://ng.ant.design">@context.Title</a>
+                                        </TitleTemplate>
+                                    </ListItemMeta>
+                                    <div class="listContent">
+                                        <div class="description">相关描述相关描述相关描述相关描述</div>
+                                        <div class="extra">
+                                            <Avatar Src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" Size="small" />
+                                            <a href="">xxx</a> 发布在 <a href="#">xxx</a>
+                                            @*<em>12：12：12</em>*@
+                                        </div>
+                                    </div>
+                                </ListItem>
+                            </AntList>
+                        </div>
+                    </Card>
+                </GridCol>
+
+                <GridCol Xs="24" Sm="24" Md="24" Lg="24" Xl="24" Xxl="24">
+                    <Card Style="margin-bottom: 24px;">
+                        <div class="tags">
+                            <div class="tagsTitle">热门标签</div>
+                            <Tag>帅气</Tag>
+                        </div>
+                    </Card>
+                </GridCol>
+            </Row>
+        </GridCol>
+    </Row>
+</div>
+
+<style>
+    .ant-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        color: rgba(0,0,0,.85);
+    }
+</style>
+
+@code{
+    public bool InitLoading { get; set; } = true;
+
+    public bool Loading { get; set; } = false;
+    Dictionary<string, int> Gutter = new Dictionary<string, int>()
+    {
+        ["xs"] = 8,
+        ["sm"] = 16,
+        ["md"] = 24,
+        ["lg"] = 32,
+        ["xl"] = 32,
+        ["xxl"] = 32
+    };
+
+    public List<BasicItem> Data = new List<BasicItem>
+    {
+        new BasicItem { Title = "Title 1"},
+        new BasicItem { Title = "Title 2"},
+        new BasicItem { Title = "Title 3"},
+        new BasicItem { Title = "Title 4"},
+        new BasicItem { Title = "Title 5"},
+        new BasicItem { Title = "Title 6"},
+    };
+
+    public class BasicItem
+    {
+        public string Title { get; set; }
+    }
+    protected override void OnInitialized()
+    {
+        InitLoading = false;
+        base.OnInitialized();
+    }
+
+    public async Task OnLoadMore()
+    {
+        Loading = true;
+        Data.AddRange(Data);
+        Loading = false;
+    }
+}
