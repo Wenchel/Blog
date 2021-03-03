@@ -1,7 +1,133 @@
 ﻿@inherits LayoutComponentBase
-<AntDesign.Pro.Layout.BasicLayout Logo="@("../../logo.png")">
-    <ChildContent>
-        @Body
-    </ChildContent>
-</AntDesign.Pro.Layout.BasicLayout>
-<SettingDrawer />
+
+<Layout Class="layout">
+    <header class="clearfix header">
+        <Row Style="flex-flow: nowrap; height: 64px;" OnBreakpoint="OnBreakpoint">
+
+            <GridCol Xs="24" Sm="24" Md="6" Lg="6" Xl="5" Xxl="4">
+                <h1>
+                    <img alt="logo" class="logo" src="../../logo.png"><span style="margin-left:24px">Wenchel Blog</span>
+                </h1>
+            </GridCol>
+
+            @if (!_isMobile)
+            {
+        <GridCol Class="menu-row" Xs="0" Sm="0" Md="18" Lg="18" Xl="19" Xxl="20">
+            <Menu Mode=MenuMode.Horizontal>
+                <MenuItem Key="home">
+                    <Icon Type="home" Theme="outline"></Icon>
+                    <MenuLink Href="#" rel="noopener noreferrer">
+                        主页
+                    </MenuLink>
+                </MenuItem>
+                <MenuItem Key="classification">
+                    <Icon Type="partition" Theme="outline"></Icon>
+                    <MenuLink Href="#" rel="noopener noreferrer">
+                        分类
+                    </MenuLink>
+                </MenuItem>
+                <MenuItem Key="tags">
+                    <Icon Type="tags" Theme="outline"></Icon>
+                    <MenuLink Href="#" rel="noopener noreferrer">
+                        标签
+                    </MenuLink>
+                </MenuItem>
+            </Menu>
+        </GridCol>
+            }
+            @if (_isMobile)
+            {
+                <Dropdown Placement="PlacementType.BottomRight" Trigger="@(new TriggerType[] { TriggerType.Click })">
+                    <Overlay>
+                        <Menu Mode=MenuMode.Horizontal>
+                            <MenuItem Key="home">
+                                <Icon Type="home" Theme="outline"></Icon>
+                                <MenuLink Href="#" rel="noopener noreferrer">
+                                    主页
+                                </MenuLink>
+                            </MenuItem>
+                            <MenuItem Key="classification">
+                                <Icon Type="partition" Theme="outline"></Icon>
+                                <MenuLink Href="#" rel="noopener noreferrer">
+                                    分类
+                                </MenuLink>
+                            </MenuItem>
+                            <MenuItem Key="tags">
+                                <Icon Type="tags" Theme="outline"></Icon>
+                                <MenuLink Href="#" rel="noopener noreferrer">
+                                    标签
+                                </MenuLink>
+                            </MenuItem>
+                        </Menu>
+                    </Overlay>
+                    <ChildContent>
+                        <Icon Type="unordered-list" Class="nav-phone-icon" />
+                    </ChildContent>
+                </Dropdown>
+            }
+
+        </Row>
+    </header>
+    <Content Style="padding: 0 50px;margin-top:16px">
+        <div class="site-layout-content">
+            @Body
+        </div>
+    </Content>
+    <Footer Style="text-align: center; ">Ant Design ©2018 Created by Ant UED</Footer>
+</Layout>
+
+<style>
+    .logo {
+        height: 64px;
+        padding-left: 40px;
+        overflow: hidden;
+        color: rgba(0,0,0,.85);
+        font-size: 18px;
+        font-family: Avenir,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        line-height: 64px;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .header {
+        position: relative;
+        z-index: 10;
+        max-width: 100%;
+        background: #fff;
+        -webkit-box-shadow: 0 2px 8px #f0f1f2;
+        box-shadow: 0 2px 8px #f0f1f2;
+    }
+
+    .menu-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: 0;
+    }
+    .ant-menu-horizontal {
+        line-height: 46px;
+        border: 0;
+        border-bottom: 0px;
+        box-shadow: none;
+    }
+    .nav-phone-icon {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        z-index: 1;
+        width: 16px;
+        height: 22px;
+        cursor: pointer;
+    }
+</style>
+@code{
+    public bool _isMobile;
+    private void OnBreakpoint(BreakpointType breakpoint)
+    {
+        _isMobile = breakpoint.IsIn(BreakpointType.Sm, BreakpointType.Xs, BreakpointType.Md);
+    }
+}
+
