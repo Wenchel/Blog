@@ -9,13 +9,16 @@
     <Import_RootNamespace>Blog.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DataTransferObjects\BlogClassificationServiceDtos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTransferObjects\UserServiceDtos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTransferObjects\VerificationServiceDtos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Blog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\BlogClassification.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parameters\BlogClassificationServiceParas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\UserServiceParas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\VerificationServiceParas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Profiles\BlogClassificationServiceProfiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Profiles\UnionProfiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Profiles\UserServiceProfiles.cs" />
   </ItemGroup>

@@ -21,10 +21,24 @@ namespace Blog.Shared.Entities
         /// 分类名称
         /// </summary>
         public string ClassificationName { get; set; }
+
+        /// <summary>
+        /// 创建博客时间
+        /// </summary>
+        [Column(ServerTime = DateTimeKind.Local, CanUpdate = false)]
+        public DateTime CreateClassificationTime { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// 创建更新时间
+        /// </summary>
+        [Column(ServerTime = DateTimeKind.Local)]
+        public DateTime UpdateClassificationTime { get; set; } = DateTime.Now;
+
         /// <summary>
         /// 分类下的博客
         /// </summary>
         [Navigate(nameof(Blog.ClassificationId))]
         public List<Blog> Blogs { get; set; }
+
     }
 }

@@ -9,23 +9,27 @@ namespace Blog.Server.ServicesImpl
 {
     public class BlogServiceImpl : IBlogService
     {
-        private readonly BlogClassificationRepository _blogClassificationRepository;
-        private readonly BlogRepository _blogRepository;
-        private readonly IFreeSql freeSql;
+        //private readonly BlogClassificationRepository _blogClassificationRepository;
+        //private readonly BlogRepository _blogRepository;
+        //private readonly IFreeSql freeSql;
 
-        public BlogServiceImpl(BlogClassificationRepository blogClassificationRepository,BlogRepository blogRepository,IFreeSql freeSql)
-        {
-            _blogClassificationRepository = blogClassificationRepository;
-            _blogRepository = blogRepository;
-            this.freeSql = freeSql;
-        }
+        //public BlogServiceImpl(BlogClassificationRepository blogClassificationRepository,BlogRepository blogRepository,IFreeSql freeSql)
+        //{
+        //    _blogClassificationRepository = blogClassificationRepository;
+        //    _blogRepository = blogRepository;
+        //    this.freeSql = freeSql;
+        //}
 
-        public Task GetBlogs()
+        //public Task GetBlogs()
+        //{
+        //    var a= freeSql.Select<Blog.Shared.Entities.Blog>().ToList();
+        //    var r = _blogRepository.Select.Include(i=>i.Classification).Where(it => it.Classification.ClassificationName == "C#").ToListAsync();
+        //    var s = _blogClassificationRepository.Select.IncludeMany(i=>i.Blogs).Where(it => it.ClassificationName == "C#").ToListAsync();
+        //    return null;
+        //}
+        public Task AddBlogClassification()
         {
-            var a= freeSql.Select<Blog.Shared.Entities.Blog>().ToList();
-            var r = _blogRepository.Select.Include(i=>i.Classification).Where(it => it.Classification.ClassificationName == "C#").ToListAsync();
-            var s = _blogClassificationRepository.Select.IncludeMany(i=>i.Blogs).Where(it => it.ClassificationName == "C#").ToListAsync();
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

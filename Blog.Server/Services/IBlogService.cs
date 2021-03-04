@@ -7,6 +7,10 @@ namespace Blog.Server.Services
 {
     public interface IBlogService
     {
-        Task GetBlogs();
+        Task AddBlogClassification();
+        //Task GetBlogs();
+        //Task GetAllBlogClassification();
+        //Task AddBlogClassification();
+        //Task DeleteBlogClassification();
     }
 }

@@ -21,7 +21,7 @@ namespace Blog.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var a=_blogService.GetBlogs();
+            //var a=_blogService.GetBlogs();
             return Ok();
         }
     }
