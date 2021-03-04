@@ -1,7 +1,7 @@
 ﻿@page "/"
 <div>
     <Row Gutter="@Gutter">
-        <GridCol Xs="24" Sm="24" Md="6" Lg="6" Xl="6" Xxl="6" >
+        <GridCol Xs="24" Sm="24" Md="24" Lg="6" Xl="6" Xxl="6" >
             <Card Style="margin-bottom: 24px;">
                 <div class="avatarHolder">
                     <img alt="" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png" />
@@ -41,7 +41,7 @@
                 </div>
             </Card>
         </GridCol>
-        <GridCol Xs="24" Sm="24" Md="12" Lg="12" Xl="12" Xxl="12">
+        <GridCol Xs="24" Sm="24" Md="24" Lg="12" Xl="12" Xxl="12">
 
 
             <AntList TItem="BasicItem"
@@ -49,21 +49,23 @@
                      DataSource="@Data">
                 <ChildContent Context="context">
                     <ListItem NoFlex>
-                        <Card Class="card" Style="width:100%" Hoverable Bordered>
-                            <Cover>
-                                <img alt="@context.Title" src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" />
-                            </Cover>
-                            <ChildContent>
-                                <CardMeta>
-                                    <DescriptionTemplate>@context.Title</DescriptionTemplate>
-                                    <TitleTemplate><a>@context.Title</a></TitleTemplate>
-                                </CardMeta>
-                                <div class="cardItemContent">
-                                    相关内容......
-                                </div>
-                            </ChildContent>
+                        <a href="#">
+                            <Card Class="card" Style="width:100%" Hoverable Bordered>
+                                <Cover>
+                                    <img alt="@context.Title" src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" />
+                                </Cover>
+                                <ChildContent>
+                                    <CardMeta>
+                                        <DescriptionTemplate>@context.Title</DescriptionTemplate>
+                                        <TitleTemplate><a>@context.Title</a></TitleTemplate>
+                                    </CardMeta>
+                                    <div class="cardItemContent">
+                                        相关内容......
+                                    </div>
+                                </ChildContent>
 
-                        </Card>
+                            </Card>
+                        </a>
                     </ListItem>
                 </ChildContent>
                     <LoadMore>
@@ -77,7 +79,7 @@
             </AntList>
 
         </GridCol>
-        <GridCol Xs="24" Sm="24" Md="6" Lg="6" Xl="6" Xxl="6">
+        <GridCol Xs="24" Sm="24" Md="24" Lg="6" Xl="6" Xxl="6">
             <Row Style="margin-bottom: 24px;">
                 <GridCol Xs="24" Sm="24" Md="24" Lg="24" Xl="24" Xxl="24">
                     <Card Style="margin-bottom: 24px;">
@@ -88,18 +90,14 @@
                                      Class="articleList"
                                      DataSource="@Data.Take(3)">
                                 <ListItem NoFlex>
-                                    <ListItemMeta Description="">
-                                        <TitleTemplate>
-                                            <a href="https://ng.ant.design">@context.Title</a>
-                                        </TitleTemplate>
-                                    </ListItemMeta>
                                     <div class="listContent">
-                                        <div class="description">相关描述相关描述相关描述相关描述</div>
-                                        <div class="extra">
-                                            <Avatar Src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" Size="small" />
-                                            <a href="">xxx</a> 发布在 <a href="#">xxx</a>
-                                            @*<em>12：12：12</em>*@
-                                        </div>
+                                        <a href="#">
+                                            <b>标题。。。</b>
+                                        </a><br />
+                                            过去一年，克服疫情影响，脱贫攻坚战取得全面胜利，全面建成小康社会取得伟大历史性成就，在不平凡之年书写了非凡答卷。过去一年，克服疫情影响，脱贫攻坚战取得全面胜利，全面建成小康社会取得伟大历史性成就，在不平凡之年书写了非凡答卷。
+
+                                            <br /><i>2021-03-05 14:20:01</i>
+                                        
                                     </div>
                                 </ListItem>
                             </AntList>
@@ -127,6 +125,9 @@
         justify-content: space-between;
         padding: 0;
         color: rgba(0,0,0,.85);
+    }
+    .ant-list-lg .ant-list-item {
+        padding: 16px 6px;
     }
 </style>
 
