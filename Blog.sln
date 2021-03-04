@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Client.Server", "Blog.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Blog.Shared", "Blog.Shared\Blog.Shared.shproj", "{60DE5948-8EDA-4E34-B5BD-C3492D876FA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Tests", "Blog.Tests\Blog.Tests.csproj", "{C9DD901A-BAEA-4785-8B2A-103D6D0173F4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Blog.Shared\Blog.Shared.projitems*{60de5948-8eda-4e34-b5bd-c3492d876fa0}*SharedItemsImports = 13
@@ -40,6 +42,10 @@ Global
 		{DDBD5E18-9A0C-4021-A440-1617A48A1605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDBD5E18-9A0C-4021-A440-1617A48A1605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDBD5E18-9A0C-4021-A440-1617A48A1605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DD901A-BAEA-4785-8B2A-103D6D0173F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9DD901A-BAEA-4785-8B2A-103D6D0173F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9DD901A-BAEA-4785-8B2A-103D6D0173F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9DD901A-BAEA-4785-8B2A-103D6D0173F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
