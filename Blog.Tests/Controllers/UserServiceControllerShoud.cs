@@ -134,7 +134,6 @@ namespace Blog.Tests.Controllers
             Assert.False(resultVal.IsSuccess);
             _output.WriteLine(JsonSerializer.Serialize(resultVal, _options));
             await _userRepository.DeleteAsync(it => it.UserEmail == testSignUpEmail); 
-
         }
     }
 }
