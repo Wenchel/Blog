@@ -59,7 +59,7 @@ namespace Blog.Server
             services.AddFreeRepository(null, this.GetType().Assembly);
             #endregion
             #region 注入AutoMapper
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(this.GetType().Assembly);//AppDomain.CurrentDomain.GetAssemblies()
             #endregion
             #region 注入邮件发送服务
             services.AddFluentEmail("WenchelChow@yeah.net").AddSmtpSender(new SmtpClient
