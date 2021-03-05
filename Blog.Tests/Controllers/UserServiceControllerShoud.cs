@@ -133,7 +133,8 @@ namespace Blog.Tests.Controllers
             Assert.InRange((int)resultObj.StatusCode, 200, 299);
             Assert.False(resultVal.IsSuccess);
             _output.WriteLine(JsonSerializer.Serialize(resultVal, _options));
-            await _userRepository.DeleteAsync(it => it.UserEmail == testSignUpEmail);
+            await _userRepository.DeleteAsync(it => it.UserEmail == testSignUpEmail); 
+
         }
     }
 }
