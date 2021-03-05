@@ -2,9 +2,9 @@
 
 <Layout Class="layout">
     <header class="clearfix header">
-        <Row Style="flex-flow: nowrap; height: 64px;" OnBreakpoint="OnBreakpoint">
+        <Row Style="flex-flow: nowrap; height: 64px;max-width: 1440px; margin: 0 auto;" OnBreakpoint="OnBreakpoint">
 
-            <GridCol Xs="24" Sm="24" Md="10" Lg="10" Xl="5" Xxl="4">
+            <GridCol Xs="24" Sm="24" Md="10" Lg="10" Xl="6" Xxl="6">
                 <h1>
                     <img alt="logo" class="logo" src="../../logo.png"><span style="margin-left:24px">Wenchel Blog</span>
                 </h1>
@@ -12,7 +12,7 @@
 
             @if (!_isMobile)
             {
-        <GridCol Class="menu-row" Xs="0" Sm="0" Md="14" Lg="14" Xl="19" Xxl="20">
+        <GridCol Class="menu-row" Xs="0" Sm="0" Md="14" Lg="14" Xl="18" Xxl="18">
             <Menu Mode=MenuMode.Horizontal>
                 <MenuItem Key="home">
                     <Icon Type="home" Theme="outline"></Icon>
@@ -68,7 +68,7 @@
 
         </Row>
     </header>
-    <Content Style="padding: 0 16px;margin-top:16px">
+    <Content Style="padding: 0 16px;margin:16px auto;max-width:1440px">
         <div class="site-layout-content">
             @Body
         </div>
